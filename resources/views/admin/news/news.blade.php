@@ -80,7 +80,7 @@
                             <input type="checkbox" disabled  {{ $item->published ?'checked':'' }}  >
                         </td>
                         <td>
-                            {{ $item->category->title }}
+                            {{ $item->category->title ?? '' }}
                             {{--                        {{dd($item)}}--}}
                         </td>
                         <td class="td-actions " >

@@ -35,6 +35,10 @@ class CategoriesController extends Controller
     }
     public function edit($id){
         $category = Categories::find($id);
+        if (!$category){
+            session()->flash('msg' , 'w: category not exist');
+            return redirect(route('category.index'));
+        }
         return view('admin.category.edit' )->with('category' , $category);
     }
 
@@ -44,15 +48,22 @@ class CategoriesController extends Controller
 
         if (!$country){
             session()->flash('msg' , 'w: category not exist');
+            return redirect(route('category.index'));
         }
         else{
             $country->update($request->all());
             session()->flash('msg' , 's: update successfully');
+            return redirect(route('category.index'));
         }
 
-        return redirect(route('category.index'));
+
     }
     public function show($id){
-        return view('admin.category.category')->with('category' , Categories::find($id));
+        $category = Categories::find($id) ;
+        if (!$category){
+            session()->flash('msg' , 'w: category not exist');
+            return redirect(route('category.index'));
+        }
+        return view('admin.category.category')->with('category' , $category);
     }
 }

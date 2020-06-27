@@ -63,9 +63,17 @@ class NewsController extends Controller
         session()->flash('msg' , 's: updated successfully');
         return redirect(route('news.index'));
     }
+
+
     public  function show($id){
-        $news = News::find($id) ;
-        $categories = Categories::all();
-        return view('admin.news.new')->with('news' , $news)->with('categories' , $categories );
+       $news = News::find($id) ;
+       $categories = Categories::all();
+       if (! $news){
+           session()->flash('msg' , 'w: news not exist');
+           return redirect(route('news.index'));
+       }
+       else{
+           return view('news.show')->with('news' , $news)->with('categories' , $categories);
+       }
     }
 }

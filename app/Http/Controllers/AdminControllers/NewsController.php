@@ -47,8 +47,14 @@ class NewsController extends Controller
 
     public function edit($id){
         $new = News::find($id);
+        if (! $new){
+            session()->flash('msg' , 'w: news not exist');
+            return redirect(route('news.index'));
+        }
+        else{
         $categories = Categories::all();
         return view('admin.news.edit')->with('item' , $new)->with('categories' , $categories );
+        }
     }
 
 
@@ -73,7 +79,7 @@ class NewsController extends Controller
            return redirect(route('news.index'));
        }
        else{
-           return view('news.show')->with('news' , $news)->with('categories' , $categories);
+           return view('admin.news.new')->with('news' , $news)->with('categories' , $categories);
        }
     }
 }

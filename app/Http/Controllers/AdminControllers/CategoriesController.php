@@ -7,12 +7,16 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Categories;
+use App\Models\News;
 
 class CategoriesController extends Controller
 {
     public function index(){
-        $categories = Categories::all();
-        return view('admin.category.categories')->with('categories' , $categories);
+        $categories = Categories::get();
+        $news = News::get();
+
+
+        return view('admin.category.categories')->with('categories' , $categories)->with('news' , $news);
     }
     public function create(){
         return view('admin.category.create');

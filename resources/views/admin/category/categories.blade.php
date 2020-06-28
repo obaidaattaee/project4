@@ -49,13 +49,16 @@
                         <th>
                             Visible
                         </th>
+                        <th>
+                            number of items
+                        </th>
 
                         <th class="">
                             Edit / Delete
                         </th>
                     </tr></thead>
                     <tbody>
-@foreach($categories as $category)
+@foreach($categories as $category )
                         <tr>
                             <td>
                               {{ $category->id }}
@@ -67,7 +70,9 @@
                             <td>
                                 <input type="checkbox" disabled {{ $category->show ?'checked':'' }} >
                             </td>
-
+                            <td>
+                              {{ $news->where('category_id' , $category->id)->count() }}
+                            </td>
                             <td class="td-actions " >
                                 <a href="{{ route('category.show' , $category->id) }}">
                                     <button type="button" rel="tooltip" title="" class="btn btn-dark btn-link btn-sm" data-original-title="Edit Task">

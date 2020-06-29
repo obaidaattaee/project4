@@ -15,7 +15,7 @@ class NewsController extends Controller
 //    $blade_path = 'admin.news';
 
     public function index(){
-        $news = News::all();
+        $news = News::paginate(1);
 
         return view('admin.news.news')->with('news' , $news);
     }

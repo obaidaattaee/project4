@@ -15,15 +15,24 @@
     <div class="card">
         <div class="card-header card-header-primary">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <h4 class="card-title ">{{ ucwords($title) }}</h4>
                     <p class="card-category"> her you can show all {{ ucwords($title) }}</p>
                 </div>
 
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" name="q" class="form-control" value="{{ request()->q }}">
+                        </div>
+                        <div class="col-3">
+                            <input type="submit" value="search">
+                        </div>
+                        <div class="col-3" >                    <a href="{{ route('news.create') }}" class="btn btn-primary  btn-round" style="background-color: #6C3D5E">New {{$title}}</a>
+                        </div>
+                    </div>
+                </form>
 
-                <div class="col-md-4 text-right">
-                    <a href="{{ route('news.create') }}" class="btn btn-primary  btn-round" style="background-color: #6C3D5E">New {{$title}}</a>
-                </div>
             </div>
         </div>
 
@@ -35,6 +44,7 @@
 
 
             @endif
+
             <div class="table-responsive ">
 
                 <table class="table">
@@ -108,5 +118,5 @@
         </div>
     </div>
 
-
+{{ $news->links() }}
 @endsection

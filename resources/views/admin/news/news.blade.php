@@ -15,20 +15,36 @@
     <div class="card">
         <div class="card-header card-header-primary">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <h4 class="card-title ">{{ ucwords($title) }}</h4>
                     <p class="card-category"> her you can show all {{ ucwords($title) }}</p>
                 </div>
 
                 <form>
                     <div class="row">
-                        <div class="col-6">
-                            <input type="text" name="q" class="form-control" value="{{ request()->q }}">
+                        <div class="col-4">
+                            <input type="text" name="sammary" class="form-control" value="{{ request()->sammary }}">
                         </div>
-                        <div class="col-3">
-                            <input type="submit" value="search">
+                        <div class="col-2">
+                            <select class="browser-default custom-select" name="category">
+                                <option value="">any category</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-3" >                    <a href="{{ route('news.create') }}" class="btn btn-primary  btn-round" style="background-color: #6C3D5E">New {{$title}}</a>
+                        <div class="col-2">
+                            <select name="published" class="browser-default custom-select">
+                                <option value="">all </option>
+                                <option value="1">published</option>
+                                <option value="0">not published</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" value="search" class="btn btn-success">
+                        </div>
+                        <div class="col-2 text-right" >
+                            <a href="{{ route('news.create') }}" class="btn btn-primary  btn-round" style="background-color: #6C3D5E">New {{$title}}</a>
                         </div>
                     </div>
                 </form>

@@ -17,6 +17,7 @@ class NewsRequest extends FormRequest
             'sammary' => ['required'],
             'category_id' => ['required'] ,
             'details' => ['required'] ,
+            'image' => ['required'] ,
         ];
     }
 }

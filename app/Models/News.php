@@ -14,6 +14,7 @@ class News extends Model
         'sammary' ,
         'details' ,
         'published' ,
+        'image' ,
     ];
     public function category(){
         return $this->belongsTo('App\Models\Categories' , 'category_id' , 'id' );
